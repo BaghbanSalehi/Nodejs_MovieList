@@ -18,6 +18,7 @@ var list = (req, res, title = '') => {
                 movie: mv,
                 error: error,
                 title: title,
+            
                 
             });
         })
@@ -43,6 +44,7 @@ var reviewList = (req, res, msg = '') => {
                 review: rws,
                 error: error,
                 msg: msg,
+                t:t
             });
         })
         .catch(err => {
@@ -69,6 +71,24 @@ Router.get('/delete/:rwId', (req, res) => {
             error = err;
             console.error(error);
         });
+});
+Router.get('/show/:mtitle', (req, res) => {
+
+    Movie.findOne({
+        where:{
+            title: req.params.mtitle
+        },raw:true
+    })
+        .then(mv => {
+            res.render('movies/show', {
+                mv: mv
+            });
+        })
+        .catch(err => {
+            error = err;
+            console.error(error);
+        });
+        
 });
 
 Router.get('/:type/:msg', (req, res) => {

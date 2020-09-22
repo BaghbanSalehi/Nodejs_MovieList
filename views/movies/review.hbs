@@ -1,4 +1,4 @@
-<h1 class="title">Reviews</h1>
+<h1 class="title">Reviews for {{t}}</h1>
 
 {{#if (isNotEmpty msg)}}
 <div class="alert alert-{{{msg.type}}} alert-dismissible fade show" role="alert">
@@ -34,6 +34,7 @@
         <div class="tools">
          <a href="/movies/delete/{{this._id}}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
       </div>
+      
         <p class="card-text"> user : {{{this.username}}}</p>
         <p class="card-text">{{{this.message}}}</p>
           <footer class="blockquote-footer">
@@ -44,4 +45,5 @@
       </div>
     </div>
   {{/each}}
+  
 

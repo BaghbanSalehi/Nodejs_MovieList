@@ -58,6 +58,9 @@ const sequelize = new seq('postgres','postgres','postgres',{
             allowNull:{
                 args:false
             }
+        },
+        country:{
+            type:seq.STRING
         }
 
     })
