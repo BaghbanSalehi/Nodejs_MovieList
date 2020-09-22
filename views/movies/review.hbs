@@ -1,0 +1,47 @@
+<h1 class="title">Reviews</h1>
+
+{{#if (isNotEmpty msg)}}
+<div class="alert alert-{{{msg.type}}} alert-dismissible fade show" role="alert">
+  {{{msg.msg}}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
+
+<div class="jumbotron">
+  <div class="container">
+    <form action="/movies" method="post">
+      <div class="form-group">
+        <label for="addRw">Your name</label>
+        <textarea class="form-control" name="username" id="addRw" rows="1"></textarea> 
+        <label for="addRw">Your review</label>
+        <textarea class="form-control" name="message" id="addRw" rows="3"></textarea>
+      </div>
+      <p class="lead">
+        <button class="btn btn-success btn-xs">Add</button>
+      </p>
+          <div align="right">
+            <a href="/movies" class="btn btn-sm btn-secondary">Return</a>
+        </div>
+    </form>
+    </div>
+</div>
+<div class="card-columns">
+  {{#each review}}
+    <div class="card">
+      <div class="card-body">
+        <div class="tools">
+         <a href="/movies/delete/{{this._id}}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+      </div>
+        <p class="card-text"> user : {{{this.username}}}</p>
+        <p class="card-text">{{{this.message}}}</p>
+          <footer class="blockquote-footer">
+            <small class="text-muted">
+               {{{ this.createdAt }}}
+            </small>
+          </footer>
+      </div>
+    </div>
+  {{/each}}
+
