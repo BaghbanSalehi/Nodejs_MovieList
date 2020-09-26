@@ -1,0 +1,29 @@
+<h1 class="title">Login</h1>
+
+{{#if (isNotEmpty msg)}}
+<div class="alert alert-{{{msg.type}}} alert-dismissible fade show" role="alert">
+  {{{msg.msg}}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
+
+<div class="jumbotron">
+  <div class="container">
+    <form action="/login" method="post">
+      <div class="form-group">
+          <div align = 'middle'>
+        <label for="user">Username: </label>
+        <input  name="username" id="user" ></input><br> 
+        <label for="pass">Password:&nbsp;</label>
+        <input type="password" name="password" id="pass" ></input>
+        </div>
+      </div>
+      
+          <div align = 'middle'>
+        <button class="btn btn-success btn-xs" style="width: 400px;">Login</button>
+    </div>
+    </form>
+    </div>
+</div>

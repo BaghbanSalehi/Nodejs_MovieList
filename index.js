@@ -6,7 +6,8 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const moment = require('moment')
 
-const moviesRouter = require('./routes/web/movies')
+const moviesRouter = require('./routes/web/movies').Router
+const loginRouter = require('./routes/web/login').Router
 const { patch } = require('./routes/web/movies');
 const path = require('path') 
 
@@ -15,6 +16,8 @@ connectDB.connect();
 
 const connectMongoDB = require('./middlewares/mongodb');
 connectMongoDB.connect();
+
+
 
 
 const app = express();
@@ -46,9 +49,10 @@ app.use(express.static(__dirname + '/node_modules/@fortawesome/fontawesome-free'
 
 
 app.use('/movies',moviesRouter)
+app.use('/login',loginRouter)
 
 app.get('/',(req,res)=> {
-    res.send("koskesh");
+    res.redirect('/login')
     });
 
     app.use((req,res,next)=> {

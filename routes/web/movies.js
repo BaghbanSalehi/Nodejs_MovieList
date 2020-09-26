@@ -8,7 +8,12 @@ const mongoose = require('mongoose');
 
 const Movie = require('../../model/Movie');
 const Rw = require('../../model/Review');
+const { route } = require('./login');
+const loggedin = require('./login').login
+var login = false
 var t = ""
+
+
 var list = (req, res, title = '') => {
     var error = false;
 
@@ -29,7 +34,12 @@ var list = (req, res, title = '') => {
 }
 
 Router.get('/', (req, res) =>{
+    login = loggedin(login)
+    if(login){
     list(req,res)
+    }else{
+        res.redirect('/login')
+    }
 });
 
 var reviewList = (req, res, msg = '') => {
@@ -123,4 +133,7 @@ Router.post('/', (req, res) => {
 
 
 
-module.exports = Router;
+module.exports = {
+    Router:Router,
+
+}
