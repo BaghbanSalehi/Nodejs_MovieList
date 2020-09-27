@@ -1,5 +1,5 @@
 $(function() {
-    
+
     $('.card').hover(function() {
         // $(this).css('background','#e9ecef');
         $(this).find('.tools').css('visibility','visible');

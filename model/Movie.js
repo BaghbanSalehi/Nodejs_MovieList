@@ -61,6 +61,9 @@ const sequelize = new seq('postgres','postgres','postgres',{
         },
         country:{
             type:seq.STRING
+        },
+        imageurl:{
+            type:seq.STRING
         }
 
     })
