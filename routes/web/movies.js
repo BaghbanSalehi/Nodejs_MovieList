@@ -9,9 +9,12 @@ const mongoose = require('mongoose');
 const Movie = require('../../model/Movie');
 const Rw = require('../../model/Review');
 const { route } = require('./login');
-const loggedin = require('./login').login
+const loggedin = require('./login')
 var login = false
+var user = ""
 var t = ""
+
+
 
 
 var list = (req, res, title = '') => {
@@ -34,8 +37,9 @@ var list = (req, res, title = '') => {
 }
 
 Router.get('/', (req, res) =>{
-    login = loggedin(login)
+    login = loggedin.login(login)
     if(login){
+        user = loggedin.username(user)
     list(req,res)
     }else{
         res.redirect('/login')
@@ -110,11 +114,11 @@ Router.get('/:type/:msg', (req, res) => {
 });
 
 Router.post('/', (req, res) => {
-    if (req.body.message && req.body.message != "" && req.body.username !="") {
+    if (req.body.message && req.body.message != "") {
         const rw = new Rw({
             _id: new mongoose.Types.ObjectId(),
             message: req.body.message,
-            username: req.body.username,
+            username: user,
             movieTitle: t
         })
 
@@ -130,8 +134,9 @@ Router.post('/', (req, res) => {
         res.redirect('/movies/danger/Please put some value');
     }
 })
-
-
+ function gg(){
+    console.log("aaaaaaaaaaaaah")
+}
 
 module.exports = {
     Router:Router,

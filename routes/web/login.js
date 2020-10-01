@@ -9,11 +9,7 @@ var pass = ""
 var l = false
 
 
-var client = ldap.createClient({
-  url: 'ldap://localhost:10389',
-  timeout: 5000,
-  connectTimeout: 10000
-});
+var client = {}
 
 
 Router.get('/',(req,res)=>{
@@ -30,10 +26,22 @@ Router.get('/:type/:msg', (req, res) => {
     })
 });
 
+
+Router.get("/logout", function (req, res) {
+    client.unbind()
+    client.destroy()
+    l= false
+ });
+
 Router.post('/',(req,res)=>{
     user = req.body.username
     pass = req.body.password
-
+    client = ldap.createClient({
+        url: 'ldap://localhost:10389',
+        timeout: 5000,
+        connectTimeout: 10000,
+      });
+ 
     ldapConnection = (username,password) =>{
         client.bind(username,password,(err =>{
             if (err){
@@ -60,5 +68,8 @@ module.exports = {
         }else
         return login = false
         
+    },
+    username: function username(username){
+        return username = user
     }
 }

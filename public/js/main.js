@@ -8,3 +8,9 @@ $(function() {
         $(this).find('.tools').css('visibility','hidden');
     });
 });
+$('#logout').click(function(){
+    console.log('button clicked');
+    $.ajax({url: 'login/logout', success:function(res){
+        console.log('server response is', res);
+    }});
+});
